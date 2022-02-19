@@ -8,6 +8,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.campdata.api.CampInterface
 import com.example.campdata.data.Programs
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,10 +37,14 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        getProgramData()
+
+        CoroutineScope(Dispatchers.Main).launch {
+            getProgramData()
+        }
+
     }
 
-    private fun getProgramData() {
+    suspend fun  getProgramData() {
         //creates an adapter
         val adapter= CampdataAdapter(listOf())
         pg_recyclerview.adapter=adapter
