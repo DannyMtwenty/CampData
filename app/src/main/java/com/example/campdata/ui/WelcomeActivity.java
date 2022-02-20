@@ -33,7 +33,7 @@ public class WelcomeActivity extends AppCompatActivity {
         welcome.getAfterLogoTextView().setTextSize(15);
         welcome.getAfterLogoTextView().setTextColor(Color.parseColor("#066304"));
         welcome.getFooterTextView().setTextColor(Color.parseColor("#066304"));
-        
+
 
         View view = welcome.create();
         setContentView(view);

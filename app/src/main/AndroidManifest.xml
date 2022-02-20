@@ -16,8 +16,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CampData"
         android:usesCleartextTraffic="true">
-
-
+        <activity
+            android:name=".ui.LibraryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.WorkmanActivity"
+            android:exported="true" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -35,11 +39,10 @@
             android:exported="true" />
         <activity
             android:name=".ui.HomeActivity"
-            android:exported="true"/>
-
-            <activity
-                android:name=".ui.WelcomeActivity"
-                android:exported="true" >
+            android:exported="true" />
+        <activity
+            android:name=".ui.WelcomeActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
