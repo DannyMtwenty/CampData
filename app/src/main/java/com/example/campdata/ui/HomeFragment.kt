@@ -49,6 +49,7 @@ class HomeFragment : Fragment() ,View.OnClickListener{
          view.findViewById<ImageView>(R.id.workmanimg).setOnClickListener(this)
 
          view.findViewById<ImageView>(R.id.imgLib).setOnClickListener(this)
+         view.findViewById<ImageView>(R.id.img_dept).setOnClickListener(this)
 
         // view.findViewById<ImageView>(R.id.bottomNavigationView).setOnClickListener(this)
 /*
@@ -88,6 +89,7 @@ class HomeFragment : Fragment() ,View.OnClickListener{
            R.id.img_program -> navController!!.navigate(R.id.action_homeFragment_to_programFragment)
            R.id.imgLib -> navController!!.navigate(R.id.action_homeFragment_to_libraryFragment)
            R.id.workmanimg -> navController!!.navigate(R.id.action_homeFragment_to_workmanFragment)
+           R.id.img_dept -> navController!!.navigate(R.id.action_homeFragment_to_departmentFragment)
        }
     }
 

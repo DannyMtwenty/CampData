@@ -1,33 +1,62 @@
 package com.example.campdata.ui
 
+import android.content.ContentValues
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.campdata.CampdataAdapter
 import com.example.campdata.R
+import com.example.campdata.adapters.DepartmentAdapter
+import com.example.campdata.viewModel.MyViewModelFactory
+import com.example.campdata.viewModel.campDataViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [DepartmentFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+@AndroidEntryPoint
 class DepartmentFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    lateinit var tv_data: TextView
+    lateinit var pg_recyclerview: RecyclerView
+
+    @Inject
+    lateinit var viewModelFactory: MyViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        pg_recyclerview=view.findViewById(R.id.pg_recyclerview)
+
+        // this creates a vertical layout Manager
+        pg_recyclerview.layoutManager = LinearLayoutManager(requireContext())
+
+        //creates an adapter
+        val adapter= DepartmentAdapter(listOf())
+        pg_recyclerview.adapter=adapter
+
+
+
+        val viewModel= ViewModelProviders.of(this,viewModelFactory).get(campDataViewModel::class.java)
+
+
+        viewModel.departmentList.observe(this, Observer {
+            Log.d(ContentValues.TAG, "onCreate: $it")
+            adapter.Departments=it   //it => all items in the list
+            adapter.notifyDataSetChanged()
+        })
+        viewModel.errorMessage.observe(this, Observer {
+        })
+        viewModel.getDepartmentData()
     }
 
     override fun onCreateView(
@@ -38,23 +67,5 @@ class DepartmentFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_department, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DepartmentFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DepartmentFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+
 }

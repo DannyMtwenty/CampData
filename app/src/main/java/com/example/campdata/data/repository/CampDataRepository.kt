@@ -8,4 +8,6 @@ import com.example.campdata.utils.Status
 class CampDataRepository (private val campInterface: CampInterface) {
 
     fun getAllPrograms() =campInterface.getPrograms()
+
+    fun getAllDepartments() =campInterface.getDepartments()
 }
