@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.campdata.ui.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_programFragment"
+            app:destination="@id/programFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_departmentFragment"
+            app:destination="@id/departmentFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_libraryFragment"
+            app:destination="@id/libraryFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_workmanFragment"
+            app:destination="@id/workmanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactFragment"
+        android:name="com.example.campdata.ContactFragment"
+        android:label="fragment_contact"
+        tools:layout="@layout/fragment_contact" />
+    <fragment
+        android:id="@+id/departmentFragment"
+        android:name="com.example.campdata.ui.DepartmentFragment"
+        android:label="fragment_department"
+        tools:layout="@layout/fragment_department" />
+    <fragment
+        android:id="@+id/libraryFragment"
+        android:name="com.example.campdata.ui.LibraryFragment"
+        android:label="fragment_library"
+        tools:layout="@layout/fragment_library" />
+    <fragment
+        android:id="@+id/programFragment"
+        android:name="com.example.campdata.ui.ProgramFragment"
+        android:label="fragment_program"
+        tools:layout="@layout/fragment_program" />
+    <fragment
+        android:id="@+id/workmanFragment"
+        android:name="com.example.campdata.ui.WorkmanFragment"
+        android:label="WorkmanFragment" />
+</navigation>

@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.campdata.MainActivity;
 import com.example.campdata.R;
 
 import gr.net.maroulis.library.EasySplashScreen;
@@ -18,7 +19,7 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
         EasySplashScreen welcome = new EasySplashScreen(WelcomeActivity.this)
                 .withFullScreen()
-                .withTargetActivity(HomeActivity.class)
+                .withTargetActivity(MainActivity.class)
                 .withSplashTimeOut(5000)
                 //.withLogo(R.drawable.key1)
                 .withBackgroundColor(Color.parseColor("#ffffff"))

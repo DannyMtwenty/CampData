@@ -1,18 +1,36 @@
 package com.example.campdata.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.ImageView
 import com.example.campdata.R
 
-class WorkmanActivity : AppCompatActivity() {
+
+class WorkmanFragment : Fragment() {
     lateinit var webView: WebView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_workman)
-        webView=findViewById(R.id.webView)
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+    }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+        val rootview=inflater.inflate(R.layout.fragment_workman, container, false)
+
+        webView=rootview.findViewById(R.id.webView)
 
 
         // WebViewClient allows you to handle
@@ -27,15 +45,9 @@ class WorkmanActivity : AppCompatActivity() {
 
         // if you want to enable zoom feature
         webView.settings.setSupportZoom(true)
+
+        // Inflate the layout for this fragment
+        return rootview
     }
-    // if you press Back button this code will work
-    override fun onBackPressed() {
-        // if your webview can go back it will go back
-        if (webView.canGoBack())
-            webView.goBack()
-        // if your webview cannot go back
-        // it will exit the application
-        else
-            super.onBackPressed()
-    }
+
 }
