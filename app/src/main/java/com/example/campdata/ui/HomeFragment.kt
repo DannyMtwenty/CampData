@@ -1,8 +1,6 @@
 package com.example.campdata.ui
 
-import android.content.Intent
 import android.os.Bundle
-import android.provider.AlarmClock
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,10 +11,7 @@ import androidx.navigation.Navigation
 import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
-import com.example.campdata.ContactFragment
-import com.example.campdata.MainActivity
 import com.example.campdata.R
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeFragment : Fragment() ,View.OnClickListener{
     lateinit var navController: NavController

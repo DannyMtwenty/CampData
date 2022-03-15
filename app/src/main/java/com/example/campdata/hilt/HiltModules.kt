@@ -3,6 +3,7 @@ package com.example.campdata.hilt
 import com.example.campdata.api.CampInterface
 import com.example.campdata.data.repository.CampDataRepository
 import com.example.campdata.utils.Constants
+import com.example.campdata.viewModel.MyViewModelFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,6 +29,12 @@ object HiltModules {
     @Provides
     fun provideRepository(campInterface: CampInterface) : CampDataRepository{
         return  CampDataRepository(campInterface)
+
+    }
+
+    @Provides
+    fun providesViewModelFactory(repository: CampDataRepository) : MyViewModelFactory{
+        return  MyViewModelFactory(repository)
 
     }
 }

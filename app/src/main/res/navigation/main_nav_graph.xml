@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/contactFragment"
-        android:name="com.example.campdata.ContactFragment"
+        android:name="com.example.campdata.ui.ContactFragment"
         android:label="fragment_contact"
         tools:layout="@layout/fragment_contact" />
     <fragment
