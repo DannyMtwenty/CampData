@@ -10,4 +10,7 @@ class CampDataRepository (private val campInterface: CampInterface) {
     fun getAllPrograms() =campInterface.getPrograms()
 
     fun getAllDepartments() =campInterface.getDepartments()
+
+
+
 }

@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.ProgressBar
 import com.example.campdata.R
 
 
 class WorkmanFragment : Fragment() {
     lateinit var webView: WebView
+    lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +33,7 @@ class WorkmanFragment : Fragment() {
         val rootview=inflater.inflate(R.layout.fragment_workman, container, false)
 
         webView=rootview.findViewById(R.id.webView)
+        progressBar=rootview.findViewById(R.id.progressBar)
 
 
         // WebViewClient allows you to handle
@@ -48,6 +51,25 @@ class WorkmanFragment : Fragment() {
 
         // Inflate the layout for this fragment
         return rootview
+    }
+    // Overriding WebViewClient functions
+    inner class WebViewClient : android.webkit.WebViewClient() {
+
+
+
+        // Load the URL
+        override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+            view.loadUrl(url)
+            return false
+        }
+
+        // ProgressBar will disappear once page is loaded
+        override fun onPageFinished(view: WebView, url: String) {
+
+            super.onPageFinished(view, url)
+            progressBar.visibility = View.GONE
+        }
+
     }
 
 }

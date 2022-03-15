@@ -63,6 +63,7 @@ class ProgramFragment  : Fragment() {
 
 
         viewModel.programList.observe(this, Observer {
+            when(it.status)
             Log.d(TAG, "onCreate: $it")
             adapter.Programs=it   //it => all items in the list
             adapter.notifyDataSetChanged()

@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.ProgressBar
 import com.example.campdata.R
 
 
 class LibraryFragment : Fragment() {
-    lateinit var webView : WebView
+    lateinit var webView: WebView
+    lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,11 +29,13 @@ class LibraryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        var rootview= inflater.inflate(R.layout.fragment_library, container, false)
 
 
-         webView= rootview.findViewById<View>(R.id.webView) as WebView
+        var rootview = inflater.inflate(R.layout.fragment_library, container, false)
+        progressBar = rootview.findViewById(R.id.progressBar)
+
+
+        webView = rootview.findViewById<View>(R.id.webView) as WebView
 
         // WebViewClient allows you to handle
         // onPageFinished and override Url loading.
@@ -46,9 +50,27 @@ class LibraryFragment : Fragment() {
         // if you want to enable zoom feature
         webView.settings.setSupportZoom(true)
 
+        // Inflate the layout for this fragment
         return rootview
     }
 
+    // Overriding WebViewClient functions
+    inner class WebViewClient : android.webkit.WebViewClient() {
 
 
+
+        // Load the URL
+        override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+            view.loadUrl(url)
+            return false
+        }
+
+        // ProgressBar will disappear once page is loaded
+        override fun onPageFinished(view: WebView, url: String) {
+
+            super.onPageFinished(view, url)
+            progressBar.visibility = View.GONE
+        }
+
+    }
 }
