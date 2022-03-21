@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -27,6 +28,7 @@ class ProgramFragment  : Fragment() {
 
     lateinit var tv_data: TextView
     lateinit var pg_recyclerview: RecyclerView
+    lateinit var progressBar: ProgressBar
 
     @Inject
     lateinit var viewModelFactory: MyViewModelFactory
@@ -49,6 +51,7 @@ class ProgramFragment  : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         pg_recyclerview=view.findViewById(R.id.pg_recyclerview)
+       progressBar=view.findViewById(R.id.progressBar)
 
         // this creates a vertical layout Manager
         pg_recyclerview.layoutManager = LinearLayoutManager(requireContext())
@@ -63,13 +66,22 @@ class ProgramFragment  : Fragment() {
 
 
         viewModel.programList.observe(this, Observer {
-            when(it.status)
-            Log.d(TAG, "onCreate: $it")
-            adapter.Programs=it   //it => all items in the list
-            adapter.notifyDataSetChanged()
+
+                Log.d(TAG, "onCreate: $it")
+                        adapter.Programs = it   //it => all items in the list
+                        adapter.notifyDataSetChanged()
+
         })
         viewModel.errorMessage.observe(this, Observer {
         })
+
+        viewModel.loading.observe(this, Observer {
+            when(it) {
+                true -> progressBar.visibility = View.VISIBLE
+                false -> progressBar.visibility = View.GONE
+            }
+        })
+
         viewModel.getProgramData()
 
 
